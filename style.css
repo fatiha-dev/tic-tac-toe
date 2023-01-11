@@ -1,0 +1,86 @@
+*,*::after,*::before {
+    box-sizing: border-box;
+}
+:root {
+    --cell-size:100px;
+    --mark-size:calc(var(--cell-size)*.9);
+}
+body {
+    margin: 0;
+}
+.board {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-gap: 2px;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    grid-template-columns: repeat(3,auto);
+
+}
+.cell {
+    width: 100px;
+    height: 100px;
+    background-color: rgb(243, 234, 248);
+    border-radius: 10px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+.cell.x,
+.cell.circle {
+    cursor: not-allowed;
+}
+.cell.x::before,
+.cell.x::after,
+.cell.circle::before {
+    background-color: black;
+
+}
+
+.board.x .cell:not(.x):not(.circle):hover::before,
+.board.x .cell:not(.x):not(.circle):hover::after,
+.board.circle .cell:not(.x):not(.circle):hover::before {
+    background-color: rgb(164, 177, 190);
+}
+.cell.x::before,
+.cell.x::after,
+.board.x .cell:not(.x):not(.circle):hover::before,
+.board.x .cell:not(.x):not(.circle):hover::after {
+    content: '';
+    position:absolute;
+    width: calc(var(--mark-size)*.15);
+    height: var(--mark-size);
+    /* background-color: black; */
+}
+.cell.x::before,
+.board.x .cell:not(.x):not(.circle):hover::before {
+    transform: rotate(45deg);
+}
+.cell.x::after,
+.board.x .cell:not(.x):not(.circle):hover::after {
+    transform: rotate(-45deg);
+}
+.cell.circle::before,
+.cell.circle::after,
+.board.circle .cell:not(.x):not(.circle):hover::before,
+.board.circle .cell:not(.x):not(.circle):hover::after {
+    content: '';
+    position:absolute;
+    border-radius: 50%;
+}
+.cell.circle::before ,
+.board.circle .cell:not(.x):not(.circle):hover::before{
+    width: var(--mark-size);
+    height: var(--mark-size);
+}
+.cell.circle::after,
+.board.circle .cell:not(.x):not(.circle):hover::after {
+    width: calc(var(--mark-size)* .7);
+    height: calc(var(--mark-size)* .7);
+    background-color: rgb(243, 234, 248);
+}
