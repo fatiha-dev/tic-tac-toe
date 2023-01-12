@@ -1,86 +1,115 @@
-*,*::after,*::before {
-    box-sizing: border-box;
-}
 :root {
-    --cell-size:100px;
-    --mark-size:calc(var(--cell-size)*.9);
-}
-body {
+    --background-color: #f0f0f0;
+    --font-color: #46494b;
+    --header-font-color: #727675;
+    --cell-background-color: #fff;
+    --cell-background-color-hover: #ebf9f6;
+    --button-background-color: #8cd6c8;
+    --button-hover-background: #c7dbdb;
+    --button-active-background: #406760;
+    --font: 'Varela Round', sans-serif;
+  }
+  
+  *,
+  *::after,
+  *::before {
+    box-sizing: border-box;
+    padding: 0;
     margin: 0;
-}
-.board {
-    width: 100vw;
-    height: 100vh;
-    display: grid;
-    grid-gap: 2px;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-    grid-template-columns: repeat(3,auto);
-
-}
-.cell {
-    width: 100px;
-    height: 100px;
-    background-color: rgb(243, 234, 248);
-    border-radius: 10px;
+  }
+  
+  html {
+    /* footer support */
+    position: relative;
+    min-height: 100%;
+  }
+  
+  body {
+    background-color: var(--background-color);
+    color: var(--font-color);
+    font-family: var(--font);
+    line-height: 1.6;
+    /* footer support */
+    margin-bottom: 80px;
+  }
+  
+  h1 {
+    line-height: 1.2;
+  }
+  
+  button {
     border: none;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .title {
+    font-size: 100px;
+    text-align: center;
+  }
+  
+  
+  .main {
+    padding: 0 20px;
+  }
+  
+  .winning-message {
+    padding: 20px 0;
+    font-size: 50px;
+    text-align: center;
+  }
+  
+  .board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1px;
+    width: 454px;
+    height: 454px;
+    border: none;
+    outline: none;
+    margin: 0px auto;
+    border-radius: 10px;
+  }
+  
+  .cell {
+    width: 150px;
+    height: 150px;
+    border: none;
+    background-color: var(--cell-background-color);
+    font-size: 100px;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 10px;
+
+  }
+  
+  .cell:hover {
+    background-color: var(--cell-background-color-hover);
+  }
+  
+  .center {
     display: flex;
     justify-content: center;
-    align-items: center;
-    position: relative;
-    cursor: pointer;
-}
-.cell.x,
-.cell.circle {
-    cursor: not-allowed;
-}
-.cell.x::before,
-.cell.x::after,
-.cell.circle::before {
-    background-color: black;
-
-}
-
-.board.x .cell:not(.x):not(.circle):hover::before,
-.board.x .cell:not(.x):not(.circle):hover::after,
-.board.circle .cell:not(.x):not(.circle):hover::before {
-    background-color: rgb(164, 177, 190);
-}
-.cell.x::before,
-.cell.x::after,
-.board.x .cell:not(.x):not(.circle):hover::before,
-.board.x .cell:not(.x):not(.circle):hover::after {
-    content: '';
-    position:absolute;
-    width: calc(var(--mark-size)*.15);
-    height: var(--mark-size);
-    /* background-color: black; */
-}
-.cell.x::before,
-.board.x .cell:not(.x):not(.circle):hover::before {
-    transform: rotate(45deg);
-}
-.cell.x::after,
-.board.x .cell:not(.x):not(.circle):hover::after {
-    transform: rotate(-45deg);
-}
-.cell.circle::before,
-.cell.circle::after,
-.board.circle .cell:not(.x):not(.circle):hover::before,
-.board.circle .cell:not(.x):not(.circle):hover::after {
-    content: '';
-    position:absolute;
-    border-radius: 50%;
-}
-.cell.circle::before ,
-.board.circle .cell:not(.x):not(.circle):hover::before{
-    width: var(--mark-size);
-    height: var(--mark-size);
-}
-.cell.circle::after,
-.board.circle .cell:not(.x):not(.circle):hover::after {
-    width: calc(var(--mark-size)* .7);
-    height: calc(var(--mark-size)* .7);
-    background-color: rgb(243, 234, 248);
-}
+    padding: 30px;
+  }
+  
+  .resetButton {
+    padding: 10px 20px;
+    border: 3px solid var(--blue-border-color);
+    border-radius: 7px;
+    background-color: var(--button-background-color);
+    color: var(--header-font-color);
+    font-size: 50px;
+  }
+  
+  .resetButton:hover {
+    background-color: var(--button-hover-background);
+  }
+  
+  .resetButton:active {
+    background-color: var(--button-active-background);
+  }
